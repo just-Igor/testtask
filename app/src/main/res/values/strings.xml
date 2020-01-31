@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TestTask</string>
+
+    <string name="warning">Warning</string>
+    <string name="ok">OK</string>
+
+    <string name="title">Title</string>
+    <string name="year">Year</string>
+    <string name="search">Search</string>
+    <string name="save">Save</string>
+
+    <string name="movie_saved_message">Movie has been saved</string>
+    <string name="unknown_error">Unknown_error</string>
+
+    <string name="poster">poster</string>
+
+</resources>

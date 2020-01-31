@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="movie_edit_text_color">@android:color/widget_edittext_dark</color>
+    <color name="movie_text_view_color">@android:color/white</color>
+    <color name="movie_button_color">@android:color/white</color>
+
+    <color name="movie_button_bg_color">@android:color/holo_blue_light</color>
+    <color name="movie_button_bg_color_selected">@android:color/holo_blue_dark</color>
+
+    <color name="transparent_black_bg_color">#77000000</color>
+</resources>
