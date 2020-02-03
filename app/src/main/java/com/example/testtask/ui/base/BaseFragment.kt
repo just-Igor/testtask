@@ -5,7 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.testtask.R
 
-open class BaseFragment: Fragment() {
+abstract class BaseFragment: Fragment() {
 
     protected fun showError(errorMessage: String) {
         context?.let {

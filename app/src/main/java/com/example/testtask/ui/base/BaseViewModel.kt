@@ -6,7 +6,7 @@ import com.example.testtask.utils.liveData.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-open class BaseViewModel: ViewModel() {
+abstract class BaseViewModel: ViewModel() {
 
     private val _loadingProgress: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val loadingProgress: LiveData<Boolean> get() = _loadingProgress
