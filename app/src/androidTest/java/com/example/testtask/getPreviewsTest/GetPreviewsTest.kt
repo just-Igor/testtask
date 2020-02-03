@@ -36,7 +36,7 @@ class GetPreviewsTest: KoinTest {
     }
 
     @Test
-    fun testSaveMovie() {
+    fun testGetMoviesPreviews() {
         val viewModel: MoviesViewModel by inject()
 
         viewModel.movies.observeForever(moviesObserver)
