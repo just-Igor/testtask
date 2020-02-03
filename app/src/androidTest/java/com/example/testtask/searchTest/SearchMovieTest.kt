@@ -1,32 +1,26 @@
-package com.example.testtask.searchMoviesTest
+package com.example.testtask.searchTest
 
-import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.testtask.constants.TEST_MOVIE_IMDBID
 import com.example.testtask.constants.TEST_MOVIE_SEARCH_TITLE
 import com.example.testtask.constants.TEST_MOVIE_SEARCH_YEAR
-import com.example.testtask.di.testModules
 import com.example.testtask.domain.Movie
+import com.example.testtask.repository.moviesRepository.offline.IMoviesOfflineRepository
 import com.example.testtask.repository.moviesRepository.online.IMoviesOnlineRepository
 import com.example.testtask.rule.RxSchedulersOverrideRule
 import com.example.testtask.ui.movie.MovieViewModel
 import com.example.testtask.ui.searchMovie.SearchMovieViewModel
 import org.junit.*
 import org.junit.runner.RunWith
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
 import org.koin.core.inject
 import org.koin.test.KoinTest
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
-import org.mockito.junit.MockitoJUnitRunner
 
-
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(AndroidJUnit4::class)
 class SearchMovieTest: KoinTest {
 
     @get:Rule
@@ -38,21 +32,13 @@ class SearchMovieTest: KoinTest {
     @Mock
     lateinit var movieObserver: Observer<Movie>
 
-    @Mock
-    val context: Context = mock(Context::class.java)
-
     @Before
     fun before() {
         MockitoAnnotations.initMocks(this)
-        startKoin {
-            androidContext(context)
-            modules(testModules)
-        }
     }
 
     @After
     fun after() {
-        stopKoin()
     }
 
     @Test
@@ -93,4 +79,30 @@ class SearchMovieTest: KoinTest {
         Assert.assertEquals(movie1, movie2)
     }
 
+    @Test
+    fun testSearchMoviesByTitleAndIdOffline() {
+        val moviesOnlineRepository: IMoviesOnlineRepository by inject()
+        val moviesOfflineRepository: IMoviesOfflineRepository by inject()
+
+        val movie = moviesOnlineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)
+            .test()
+            .assertNoErrors()
+            .values()[0]
+
+        moviesOfflineRepository.saveMovie(movie)
+            .test()
+            .assertNoErrors()
+
+        val movie1 = moviesOfflineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)
+            .test()
+            .assertNoErrors()
+            .values()[0]
+
+        val movie2 = moviesOfflineRepository.searchMovieById(movie1.imdbId)
+            .test()
+            .assertNoErrors()
+            .values()[0]
+
+        Assert.assertEquals(movie1, movie2)
+    }
 }
