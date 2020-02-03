@@ -37,10 +37,6 @@ class SearchMovieTest: KoinTest {
         MockitoAnnotations.initMocks(this)
     }
 
-    @After
-    fun after() {
-    }
-
     @Test
     fun testSearchByTitleMovie() {
         val viewModel: SearchMovieViewModel by inject()
