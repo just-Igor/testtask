@@ -94,7 +94,7 @@ class SearchMovieTest: KoinTest {
             .assertNoErrors()
             .values()[0]
 
-        val movie2 = moviesOfflineRepository.searchMovieById(movie1.imdbId)
+        val movie2 = moviesOfflineRepository.searchMovieById(movie.imdbId)
             .test()
             .assertNoErrors()
             .values()[0]
