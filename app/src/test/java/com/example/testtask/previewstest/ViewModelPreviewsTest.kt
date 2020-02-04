@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.testtask.di.testModules
 import com.example.testtask.domain.MoviePreview
-import com.example.testtask.interactor.movies.IMoviesUseCase
+import com.example.testtask.usecase.movies.IMoviesUseCase
 import com.example.testtask.ui.movies.MoviesViewModel
 import data.testMovie
 import io.reactivex.Flowable

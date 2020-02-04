@@ -3,7 +3,7 @@ package com.example.testtask.ui.searchmovie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.testtask.domain.Movie
-import com.example.testtask.interactor.movies.IMoviesUseCase
+import com.example.testtask.usecase.movies.IMoviesUseCase
 import com.example.testtask.ui.base.BaseViewModel
 import com.example.testtask.utils.livedata.SingleLiveEvent
 import com.example.testtask.utils.rx.ISchedulerProvider

@@ -3,8 +3,8 @@ package com.example.testtask.savetest
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.testtask.di.testModules
-import com.example.testtask.interactor.movies.IMoviesUseCase
-import com.example.testtask.interactor.movies.MoviesUseCase
+import com.example.testtask.usecase.movies.IMoviesUseCase
+import com.example.testtask.usecase.movies.MoviesUseCase
 import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
 import data.testMovie
 import io.reactivex.Completable

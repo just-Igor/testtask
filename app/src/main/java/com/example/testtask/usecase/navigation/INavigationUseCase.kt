@@ -1,4 +1,4 @@
-package com.example.testtask.interactor.navigation
+package com.example.testtask.usecase.navigation
 
 interface INavigationUseCase {
 

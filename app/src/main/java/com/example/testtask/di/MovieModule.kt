@@ -1,7 +1,7 @@
 package com.example.testtask.di
 
-import com.example.testtask.interactor.movies.IMoviesUseCase
-import com.example.testtask.interactor.movies.MoviesUseCase
+import com.example.testtask.usecase.movies.IMoviesUseCase
+import com.example.testtask.usecase.movies.MoviesUseCase
 import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
 import com.example.testtask.repository.movies.offline.MoviesOfflineRepository
 import com.example.testtask.repository.movies.online.IMoviesOnlineRepository

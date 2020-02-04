@@ -1,7 +1,7 @@
 package com.example.testtask.di
 
-import com.example.testtask.interactor.navigation.INavigationUseCase
-import com.example.testtask.interactor.navigation.NavigationUseCase
+import com.example.testtask.usecase.navigation.INavigationUseCase
+import com.example.testtask.usecase.navigation.NavigationUseCase
 import com.example.testtask.ui.navigation.MoviesNavigationViewModel
 import com.example.testtask.ui.root.RootViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

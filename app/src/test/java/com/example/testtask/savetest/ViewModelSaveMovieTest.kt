@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.testtask.di.testModules
-import com.example.testtask.interactor.movies.IMoviesUseCase
+import com.example.testtask.usecase.movies.IMoviesUseCase
 import com.example.testtask.ui.searchmovie.SearchMovieViewModel
 import data.testMovie
 import io.reactivex.Completable

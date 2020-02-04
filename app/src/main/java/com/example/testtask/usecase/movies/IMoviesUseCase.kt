@@ -1,4 +1,4 @@
-package com.example.testtask.interactor.movies
+package com.example.testtask.usecase.movies
 
 import com.example.testtask.domain.Movie
 import com.example.testtask.domain.MoviePreview
