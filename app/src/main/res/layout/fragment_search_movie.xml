@@ -12,8 +12,8 @@
         android:hint="@string/title"
         android:importantForAutofill="no"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -24,8 +24,8 @@
         android:hint="@string/year"
         android:importantForAutofill="no"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etMovieTitle" />
 
     <Button
@@ -34,8 +34,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/search"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etMovieYear" />
 
     <Button
@@ -44,18 +44,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/save"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSearchMovie" />
 
     <ImageView
         android:id="@+id/ivMoviePoster"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="@string/poster"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSaveMovie" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,16 +66,16 @@
         android:background="@color/transparent_black_bg_color"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/ivMoviePoster"
-        app:layout_constraintStart_toStartOf="@id/ivMoviePoster"
-        app:layout_constraintEnd_toEndOf="@id/ivMoviePoster">
+        app:layout_constraintEnd_toEndOf="@id/ivMoviePoster"
+        app:layout_constraintStart_toStartOf="@id/ivMoviePoster">
 
         <TextView
             android:id="@+id/tvMovieTitle"
             style="@style/MovieTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -82,8 +83,8 @@
             style="@style/MovieTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvMovieTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -94,8 +95,8 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

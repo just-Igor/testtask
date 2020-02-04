@@ -11,6 +11,7 @@ import com.example.testtask.ui.base.BaseFragment
 import com.example.testtask.ui.movies.adapter.MovieItem
 import com.example.testtask.ui.navigation.MoviesNavigationViewModel
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.common.FlexibleItemDecoration
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -71,7 +72,11 @@ class MoviesFragment : BaseFragment() {
     }
 
     private fun setupView() {
+
         rvMoviesList.adapter = moviesAdapter
+        context?.let {
+            rvMoviesList.addItemDecoration(FlexibleItemDecoration(it).withOffset(4))
+        }
 
         fabSearch.setOnClickListener {
             openSearchFragment()

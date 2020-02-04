@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.testtask.R
 import com.example.testtask.domain.Movie
 import com.example.testtask.ui.base.BaseFragment
@@ -86,6 +87,11 @@ class SearchMovieFragment : BaseFragment() {
         context?.let {
             Glide.with(it)
                 .load(movie.poster)
+                .apply(
+                    RequestOptions()
+                        .placeholder(R.drawable.ic_movie)
+                        .error(R.drawable.ic_movie)
+                        .centerCrop())
                 .into(ivMoviePoster)
         }
         clMovieInfo.isVisible = true
