@@ -7,8 +7,6 @@ import com.example.testtask.constants.TEST_MOVIE_IMDBID
 import com.example.testtask.constants.TEST_MOVIE_SEARCH_TITLE
 import com.example.testtask.constants.TEST_MOVIE_SEARCH_YEAR
 import com.example.testtask.domain.Movie
-import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
-import com.example.testtask.repository.movies.online.IMoviesOnlineRepository
 import com.example.testtask.rule.RxSchedulersOverrideRule
 import com.example.testtask.ui.movie.MovieViewModel
 import com.example.testtask.ui.searchmovie.SearchMovieViewModel
@@ -60,30 +58,5 @@ class SearchMovieTest : KoinTest {
 
         Assert.assertNotNull(viewModel.movie.value)
         Mockito.verify(movieObserver).onChanged(viewModel.movie.value)
-    }
-
-    @Test
-    fun testSearchMoviesByTitleAndIdOffline() {
-        val moviesOnlineRepository: IMoviesOnlineRepository by inject()
-        val moviesOfflineRepository: IMoviesOfflineRepository by inject()
-
-        val movie = moviesOnlineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)
-            .test()
-            .assertNoErrors()
-            .values()[0]
-
-        moviesOfflineRepository.saveMovie(movie)
-            .test()
-            .assertNoErrors()
-
-        moviesOfflineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)
-            .test()
-            .assertNoErrors()
-            .assertValue(movie)
-
-        moviesOfflineRepository.searchMovieById(movie.imdbId)
-            .test()
-            .assertNoErrors()
-            .assertValue(movie)
     }
 }

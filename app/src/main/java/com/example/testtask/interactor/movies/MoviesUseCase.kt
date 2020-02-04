@@ -22,10 +22,8 @@ class MoviesUseCase(
     }
 
     override fun searchMovie(title: String, year: Int?): Single<Movie> {
-//        return moviesOfflineRepository.searchMovie(title, year)
-//            .onErrorResumeNext {
-        return moviesOnlineRepository.searchMovie(title, year)
-//            }
+        return moviesOfflineRepository.searchMovie(title, year)
+            .onErrorResumeNext { moviesOnlineRepository.searchMovie(title, year) }
     }
 
     override fun searchMovieById(id: String): Single<Movie> {
