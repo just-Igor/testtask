@@ -1,9 +1,9 @@
 package com.example.testtask.di
 
-import com.example.testtask.ui.root.RootViewModel
 import com.example.testtask.interactor.navigation.INavigationUseCase
 import com.example.testtask.interactor.navigation.NavigationUseCase
 import com.example.testtask.ui.navigation.MoviesNavigationViewModel
+import com.example.testtask.ui.root.RootViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.terrakok.cicerone.Cicerone
@@ -17,9 +17,7 @@ val navigationModule = module {
     single<NavigatorHolder> { get<Cicerone<Router>>().navigatorHolder }
 
     single<INavigationUseCase> { NavigationUseCase(get()) }
-    
     viewModel { RootViewModel(get()) }
 
     viewModel { MoviesNavigationViewModel(get()) }
-
 }

@@ -9,5 +9,4 @@ val databaseModule = module {
     single { AppDatabase.getInstance(androidContext()) }
 
     single { get<AppDatabase>().movieDao() }
-
 }

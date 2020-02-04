@@ -1,6 +1,6 @@
 package com.example.testtask.domain
 
-import com.example.testtask.entity.MovieAPIEntyty
+import com.example.testtask.entity.MovieAPIEntity
 import com.example.testtask.entity.MovieDBEntity
 
 data class Movie(
@@ -24,12 +24,11 @@ data class Movie(
 
     val imdbRating: String?
 ) {
-    constructor(entity: MovieAPIEntyty):
+    constructor(entity: MovieAPIEntity) :
             this(entity.imdbId, entity.title, entity.year, entity.released, entity.runtime,
                 entity.director, entity.actors, entity.awards, entity.poster, entity.imdbRating)
 
-
-    constructor(entity: MovieDBEntity):
+    constructor(entity: MovieDBEntity) :
             this(entity.imdbId, entity.title, entity.year, entity.released, entity.runtime,
                 entity.director, entity.actors, entity.awards, entity.poster, entity.imdbRating)
 }

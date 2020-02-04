@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.testtask.R
@@ -13,7 +14,7 @@ import com.example.testtask.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MovieFragment: BaseFragment() {
+class MovieFragment : BaseFragment() {
 
     companion object {
 
@@ -24,7 +25,6 @@ class MovieFragment: BaseFragment() {
                 arguments = bundleOf(IMDBID_KEY to imdbId)
             }
         }
-
     }
 
     private val viewModel: MovieViewModel by viewModel()
@@ -36,15 +36,18 @@ class MovieFragment: BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        arguments?.getString(IMDBID_KEY)?.let { imdbId ->
-            viewModel.loadMovie(imdbId)
+        if (savedInstanceState == null) {
+            arguments?.getString(IMDBID_KEY)?.let { imdbId ->
+                viewModel.loadMovie(imdbId)
+            }
         }
         setupObservers()
     }
 
     private fun setupObservers() {
         viewModel.loadingProgress.observe(this, Observer { isLoadingRun ->
-
+            pbLoading.isVisible = isLoadingRun
+            clMovieInfo.isVisible = !isLoadingRun
         })
 
         viewModel.errorMessage.observe(this, Observer { errorMessage ->
@@ -60,14 +63,13 @@ class MovieFragment: BaseFragment() {
         context?.let {
             Glide.with(it)
                 .load(movie.poster)
-                .into(iv_movie_poster)
+                .into(ivMoviePoster)
         }
-        tv_movie_title.text = movie.title
-        tv_movie_actors.text = movie.actors
-        tv_movie_awards.text = movie.awards
-        tv_movie_director.text = movie.director
-        tv_movie_released.text = movie.released
-        tv_movie_rating.text = movie.imdbRating
+        tvMovieTitle.text = movie.title
+        tvMovieActors.text = movie.actors
+        tvMovieAwards.text = movie.awards
+        tvMovieDirector.text = movie.director
+        tvMovieReleased.text = movie.released
+        tvMovieRating.text = movie.imdbRating
     }
-
 }

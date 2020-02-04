@@ -1,10 +1,10 @@
 package com.example.testtask.utils.network
 
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import java.util.concurrent.TimeUnit
 
-class OkHttpBuilder: IOkHttpBuilder {
+class OkHttpBuilder : IOkHttpBuilder {
 
     override fun buildHttpClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
@@ -18,5 +18,4 @@ class OkHttpBuilder: IOkHttpBuilder {
             .callTimeout(300, TimeUnit.SECONDS)
             .build()
     }
-
 }

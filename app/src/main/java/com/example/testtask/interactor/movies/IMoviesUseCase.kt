@@ -15,5 +15,4 @@ interface IMoviesUseCase {
     fun searchMovie(title: String, year: Int?): Single<Movie>
 
     fun searchMovieById(id: String): Single<Movie>
-
 }

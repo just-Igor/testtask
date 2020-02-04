@@ -2,10 +2,10 @@ package com.example.testtask.interactor.navigation
 
 import com.example.testtask.ui.movie.MovieScreen
 import com.example.testtask.ui.movies.MoviesScreen
-import com.example.testtask.ui.searchMovie.SearchMovieScreen
+import com.example.testtask.ui.searchmovie.SearchMovieScreen
 import ru.terrakok.cicerone.Router
 
-class NavigationUseCase(private val router: Router): INavigationUseCase {
+class NavigationUseCase(private val router: Router) : INavigationUseCase {
 
     override fun openRootScreen() {
         router.newRootScreen(MoviesScreen())
@@ -18,5 +18,4 @@ class NavigationUseCase(private val router: Router): INavigationUseCase {
     override fun openMovieScreen(imdbId: String) {
         router.navigateTo(MovieScreen(imdbId))
     }
-
 }

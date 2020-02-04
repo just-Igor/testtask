@@ -1,15 +1,11 @@
 package com.example.testtask.ui.movies
 
-import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.testtask.R
 import com.example.testtask.ui.base.BaseFragment
 import com.example.testtask.ui.movies.adapter.MovieItem
@@ -18,20 +14,18 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MoviesFragment: BaseFragment() {
+class MoviesFragment : BaseFragment() {
 
     companion object {
 
         fun createInstance(): MoviesFragment {
             return MoviesFragment()
         }
-
     }
 
     private val viewModel: MoviesViewModel by viewModel()
     private val navigationViewModel: MoviesNavigationViewModel by viewModel()
 
-    private val moviesAdapterList = mutableListOf<MovieItem>()
     private val moviesAdapter = FlexibleAdapter(listOf<MovieItem>())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,12 +38,14 @@ class MoviesFragment: BaseFragment() {
         setupObservers()
         setupListeners()
         setupView()
-        viewModel.loadData()
+        if (savedInstanceState == null) {
+            viewModel.loadData()
+        }
     }
 
     private fun setupObservers() {
         viewModel.loadingProgress.observe(this, Observer { loadingProgress ->
-            pb_loading.isVisible = loadingProgress
+            pbLoading.isVisible = loadingProgress
         })
 
         viewModel.errorMessage.observe(this, Observer { errorMessage ->
@@ -57,38 +53,28 @@ class MoviesFragment: BaseFragment() {
         })
 
         viewModel.movies.observe(this, Observer { movies ->
-            moviesAdapterList.clear()
-            moviesAdapterList.addAll(movies.map { movie ->
+            moviesAdapter.updateDataSet(movies.map { movie ->
                 MovieItem(movie)
             })
-            moviesAdapter.updateDataSet(moviesAdapterList)
         })
     }
 
     private fun setupListeners() {
-        moviesAdapter.addListener(object: FlexibleAdapter.OnItemClickListener {
+        moviesAdapter.addListener(object : FlexibleAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int): Boolean {
-                openMovieFragment(moviesAdapterList[position].movie.imdbId)
+                moviesAdapter.getItem(position)?.movie?.imdbId?.let { imdbId ->
+                    openMovieFragment(imdbId)
+                }
                 return true
             }
         })
     }
 
     private fun setupView() {
-        with(rv_movies_list) {
-            layoutManager = getLayoutManager(resources.configuration.orientation)
-            adapter = moviesAdapter
-        }
+        rvMoviesList.adapter = moviesAdapter
 
-        fab_search.setOnClickListener {
+        fabSearch.setOnClickListener {
             openSearchFragment()
-        }
-    }
-
-    private fun getLayoutManager(orientation: Int): RecyclerView.LayoutManager {
-        return when (orientation) {
-            ORIENTATION_LANDSCAPE -> GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
-            else -> LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
     }
 
@@ -99,5 +85,4 @@ class MoviesFragment: BaseFragment() {
     private fun openMovieFragment(imdbId: String) {
         navigationViewModel.openMovieScreen(imdbId)
     }
-
 }

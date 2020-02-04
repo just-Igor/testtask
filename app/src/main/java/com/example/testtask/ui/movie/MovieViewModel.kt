@@ -10,7 +10,7 @@ import com.example.testtask.utils.rx.ISchedulerProvider
 class MovieViewModel(
     private val moviesUseCase: IMoviesUseCase,
     private val schedulerProvider: ISchedulerProvider
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val _movie: MutableLiveData<Movie> = MutableLiveData()
     val movie: LiveData<Movie> get() = _movie
@@ -20,8 +20,7 @@ class MovieViewModel(
             .doFinally { finishLoading() }
             .subscribeOn(schedulerProvider.worker())
             .observeOn(schedulerProvider.main())
-            .subscribe(_movie::postValue, ::processError)
+            .subscribe(_movie::setValue, ::processError)
             .addToDisposables()
     }
-
 }

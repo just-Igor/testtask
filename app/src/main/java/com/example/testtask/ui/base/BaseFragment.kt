@@ -5,7 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.testtask.R
 
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment : Fragment() {
 
     protected fun showError(errorMessage: String) {
         context?.let {
@@ -13,7 +13,7 @@ abstract class BaseFragment: Fragment() {
                 .setTitle(R.string.warning)
                 .setMessage(errorMessage)
                 .setCancelable(false)
-                .setPositiveButton(R.string.ok) { dialog, which -> dialog?.dismiss() }
+                .setPositiveButton(R.string.ok) { dialog, _ -> dialog?.dismiss() }
                 .create()
                 .show()
         }
@@ -22,5 +22,4 @@ abstract class BaseFragment: Fragment() {
     protected fun showMessage(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
-
 }

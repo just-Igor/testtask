@@ -15,9 +15,13 @@ class RootActivity : AppCompatActivity() {
 
     private val navigatorHolder: NavigatorHolder by inject()
 
-    private val navigator = object: SupportAppNavigator(this, R.id.fl_container) {
-        override fun setupFragmentTransaction(command: Command?, currentFragment: Fragment?,
-                                              nextFragment: Fragment?, fragmentTransaction: FragmentTransaction?) {
+    private val navigator = object : SupportAppNavigator(this, R.id.fcvContainer) {
+        override fun setupFragmentTransaction(
+            command: Command?,
+            currentFragment: Fragment?,
+            nextFragment: Fragment?,
+            fragmentTransaction: FragmentTransaction?
+        ) {
             fragmentTransaction?.setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
         }
     }

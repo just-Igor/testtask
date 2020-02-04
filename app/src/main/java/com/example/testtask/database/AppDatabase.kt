@@ -14,7 +14,7 @@ import com.example.testtask.repository.database.MovieDao
         MovieDBEntity::class
     ]
 )
-abstract class AppDatabase: RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 
     companion object {

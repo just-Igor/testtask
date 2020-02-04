@@ -4,7 +4,7 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class SchedulerProvider: ISchedulerProvider {
+class SchedulerProvider : ISchedulerProvider {
 
     override fun worker(): Scheduler {
         return Schedulers.io()
@@ -17,5 +17,4 @@ class SchedulerProvider: ISchedulerProvider {
     override fun main(): Scheduler {
         return AndroidSchedulers.mainThread()
     }
-
 }

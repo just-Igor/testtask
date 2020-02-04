@@ -9,5 +9,4 @@ interface ISchedulerProvider {
     fun computation(): Scheduler
 
     fun main(): Scheduler
-
 }

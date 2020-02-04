@@ -4,7 +4,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 
-class InternetConnectionHelper(private val connectivityManager: ConnectivityManager): IInternetConnectionHelper {
+class InternetConnectionHelper(private val connectivityManager: ConnectivityManager) : IInternetConnectionHelper {
     override fun isInternetConnected(): Boolean {
         return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             connectivityManager.activeNetworkInfo?.let { networkInfo ->

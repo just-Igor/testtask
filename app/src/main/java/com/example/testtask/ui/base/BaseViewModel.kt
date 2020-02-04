@@ -1,17 +1,17 @@
 package com.example.testtask.ui.base
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.testtask.utils.liveData.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
-    private val _loadingProgress: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    private val _loadingProgress: MutableLiveData<Boolean> = MutableLiveData()
     val loadingProgress: LiveData<Boolean> get() = _loadingProgress
 
-    private val _errorMessage: SingleLiveEvent<String> = SingleLiveEvent()
+    private val _errorMessage: MutableLiveData<String> = MutableLiveData()
     val errorMessage: LiveData<String> get() = _errorMessage
 
     private val disposables = CompositeDisposable()

@@ -30,5 +30,4 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun saveMovie(movie: MovieDBEntity): Long
-
 }

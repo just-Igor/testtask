@@ -7,5 +7,4 @@ interface INavigationUseCase {
     fun openSearchScreen()
 
     fun openMovieScreen(imdbId: String)
-
 }

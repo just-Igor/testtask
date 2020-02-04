@@ -5,97 +5,97 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/et_movie_title"
+        android:id="@+id/etMovieTitle"
         style="@style/movie_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/title"
         android:importantForAutofill="no"
         android:inputType="text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et_movie_year"
+        android:id="@+id/etMovieYear"
         style="@style/movie_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/year"
         android:importantForAutofill="no"
         android:inputType="number"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_movie_title" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etMovieTitle" />
 
     <Button
-        android:id="@+id/btn_search_movie"
+        android:id="@+id/btnSearchMovie"
         style="@style/movie_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/search"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_movie_year" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etMovieYear" />
 
     <Button
-        android:id="@+id/btn_save_movie"
+        android:id="@+id/btnSaveMovie"
         style="@style/movie_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/save"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_search_movie" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSearchMovie" />
 
     <ImageView
-        android:id="@+id/iv_movie_poster"
+        android:id="@+id/ivMoviePoster"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/poster"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_save_movie" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSaveMovie" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_movie_info"
+        android:id="@+id/clMovieInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/transparent_black_bg_color"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
-        app:layout_constraintLeft_toLeftOf="@id/iv_movie_poster"
-        app:layout_constraintRight_toRightOf="@id/iv_movie_poster">
+        app:layout_constraintBottom_toBottomOf="@id/ivMoviePoster"
+        app:layout_constraintStart_toStartOf="@id/ivMoviePoster"
+        app:layout_constraintEnd_toEndOf="@id/ivMoviePoster">
 
         <TextView
-            android:id="@+id/tv_movie_title"
+            android:id="@+id/tvMovieTitle"
             style="@style/movie_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_movie_released"
+            android:id="@+id/tvMovieReleased"
             style="@style/movie_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_title" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ProgressBar
-        android:id="@+id/pb_loading"
+        android:id="@+id/pbLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

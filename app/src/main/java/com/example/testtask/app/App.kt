@@ -1,12 +1,16 @@
 package com.example.testtask.app
 
 import android.app.Application
-import com.example.testtask.di.*
+import com.example.testtask.di.databaseModule
+import com.example.testtask.di.movieModule
+import com.example.testtask.di.navigationModule
+import com.example.testtask.di.networkModule
+import com.example.testtask.di.utilsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
-class App: Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -22,5 +26,4 @@ class App: Application() {
                 movieModule))
         }
     }
-
 }

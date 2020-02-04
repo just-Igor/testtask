@@ -38,7 +38,7 @@ data class MovieDBEntity(
     @ColumnInfo(name = "imdbRating")
     val imdbRating: String?
 ) {
-    constructor(movie: Movie):
+    constructor(movie: Movie) :
             this(movie.imdbId, movie.title, movie.year, movie.released, movie.runtime,
                 movie.director, movie.actors, movie.awards, movie.poster, movie.imdbRating)
 }
