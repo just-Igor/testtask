@@ -5,7 +5,7 @@ import com.example.testtask.domain.MoviePreview
 import com.example.testtask.repository.database.MovieDBEntity
 import com.example.testtask.repository.database.MovieDao
 import io.reactivex.Completable
-import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
 
 class MoviesOfflineRepository(private val movieDao: MovieDao) : IMoviesOfflineRepository {
@@ -18,7 +18,7 @@ class MoviesOfflineRepository(private val movieDao: MovieDao) : IMoviesOfflineRe
         ) }
     }
 
-    override fun getLocalMoviesPreviews(): Flowable<List<MoviePreview>> {
+    override fun getLocalMoviesPreviews(): Observable<List<MoviePreview>> {
         return movieDao.getAllMoviesPreviews()
     }
 

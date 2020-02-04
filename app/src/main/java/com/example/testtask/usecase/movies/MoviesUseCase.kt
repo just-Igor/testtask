@@ -5,7 +5,7 @@ import com.example.testtask.domain.MoviePreview
 import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
 import com.example.testtask.repository.movies.online.IMoviesOnlineRepository
 import io.reactivex.Completable
-import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
 
 class MoviesUseCase(
@@ -17,7 +17,7 @@ class MoviesUseCase(
         return moviesOfflineRepository.saveMovie(movie)
     }
 
-    override fun getLocalMoviesPreviews(): Flowable<List<MoviePreview>> {
+    override fun getLocalMoviesPreviews(): Observable<List<MoviePreview>> {
         return moviesOfflineRepository.getLocalMoviesPreviews()
     }
 

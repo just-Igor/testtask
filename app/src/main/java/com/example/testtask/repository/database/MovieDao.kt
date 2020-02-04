@@ -5,14 +5,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.testtask.domain.MoviePreview
-import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
 
 @Dao
 interface MovieDao {
 
     @Query("SELECT [imdbId], [title], [awards], [poster] FROM movies")
-    fun getAllMoviesPreviews(): Flowable<List<MoviePreview>>
+    fun getAllMoviesPreviews(): Observable<List<MoviePreview>>
 
     @Query("""
         SELECT * FROM movies
