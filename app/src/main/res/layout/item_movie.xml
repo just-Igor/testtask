@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            style="@style/movie_text_view"
+            style="@style/MovieTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/tvAwards"
@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/tvAwards"
-            style="@style/movie_text_view"
+            style="@style/MovieTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

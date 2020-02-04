@@ -8,20 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="movie_text_view" parent="android:Widget.TextView">
+    <style name="MovieTextView" parent="android:Widget.TextView">
         <item name="android:textSize">@dimen/movie_text_view_text_size</item>
         <item name="android:textColor">@color/movie_text_view_color</item>
         <item name="android:layout_margin">@dimen/margin</item>
     </style>
 
-    <style name="movie_button" parent="android:Widget.Button">
+    <style name="MovieButton" parent="android:Widget.Button">
         <item name="android:background">@drawable/bg_button_ripple</item>
         <item name="android:textColor">@color/movie_button_color</item>
         <item name="android:textSize">@dimen/movie_button_text_size</item>
         <item name="android:layout_margin">@dimen/margin</item>
     </style>
 
-    <style name="movie_edit_text" parent="android:Widget.EditText">
+    <style name="MovieEditText" parent="android:Widget.EditText">
         <item name="android:textColor">@color/movie_edit_text_color</item>
         <item name="android:textSize">@dimen/movie_edit_text_text_size</item>
         <item name="android:layout_margin">@dimen/margin</item>

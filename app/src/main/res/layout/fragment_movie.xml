@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/tvMovieTitle"
-                style="@style/movie_text_view"
+                style="@style/MovieTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/tvMovieAwards"
-                style="@style/movie_text_view"
+                style="@style/MovieTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
 
             <TextView
                 android:id="@+id/tvMovieDirector"
-                style="@style/movie_text_view"
+                style="@style/MovieTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
 
             <TextView
                 android:id="@+id/tvMovieActors"
-                style="@style/movie_text_view"
+                style="@style/MovieTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
 
             <TextView
                 android:id="@+id/tvMovieReleased"
-                style="@style/movie_text_view"
+                style="@style/MovieTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
 
             <TextView
                 android:id="@+id/tvMovieRating"
-                style="@style/movie_text_view"
+                style="@style/MovieTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"

@@ -6,7 +6,7 @@
 
     <EditText
         android:id="@+id/etMovieTitle"
-        style="@style/movie_edit_text"
+        style="@style/MovieEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/title"
@@ -18,7 +18,7 @@
 
     <EditText
         android:id="@+id/etMovieYear"
-        style="@style/movie_edit_text"
+        style="@style/MovieEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/year"
@@ -30,7 +30,7 @@
 
     <Button
         android:id="@+id/btnSearchMovie"
-        style="@style/movie_button"
+        style="@style/MovieButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/search"
@@ -40,7 +40,7 @@
 
     <Button
         android:id="@+id/btnSaveMovie"
-        style="@style/movie_button"
+        style="@style/MovieButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/save"
@@ -70,7 +70,7 @@
 
         <TextView
             android:id="@+id/tvMovieTitle"
-            style="@style/movie_text_view"
+            style="@style/MovieTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
 
         <TextView
             android:id="@+id/tvMovieReleased"
-            style="@style/movie_text_view"
+            style="@style/MovieTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
