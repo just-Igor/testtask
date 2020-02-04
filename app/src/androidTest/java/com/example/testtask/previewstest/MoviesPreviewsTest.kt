@@ -24,8 +24,7 @@ class MoviesPreviewsTest : KoinTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    @Rule
-    @JvmField
+    @get:Rule
     var testSchedulerRule = RxSchedulersOverrideRule()
 
     @Mock
