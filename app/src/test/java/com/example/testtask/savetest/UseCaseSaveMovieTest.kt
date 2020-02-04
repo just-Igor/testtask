@@ -30,12 +30,14 @@ class UseCaseSaveMovieTest : KoinTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    val context: Context = Mockito.mock(Context::class.java)
+    private val context: Context = Mockito.mock(Context::class.java)
 
     @Mock
-    lateinit var moviesOfflineRepository: IMoviesOfflineRepository
+    private lateinit var moviesOfflineRepository: IMoviesOfflineRepository
 
     private lateinit var moviesUseCase: IMoviesUseCase
+
+    private fun <T> any(): T = Mockito.any<T>()
 
     @Before
     fun before() {
@@ -55,7 +57,7 @@ class UseCaseSaveMovieTest : KoinTest {
     @Test
     fun testSaveMovie() {
         Mockito
-            .`when`(moviesOfflineRepository.saveMovie(testMovie))
+            .`when`(moviesOfflineRepository.saveMovie(any()))
             .thenAnswer { Completable.complete() }
 
         moviesUseCase.saveMovie(testMovie)

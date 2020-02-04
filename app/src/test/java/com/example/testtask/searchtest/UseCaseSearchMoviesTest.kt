@@ -22,6 +22,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
@@ -34,13 +35,13 @@ class UseCaseSearchMoviesTest : KoinTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    val context: Context = Mockito.mock(Context::class.java)
+    private val context: Context = Mockito.mock(Context::class.java)
 
     @Mock
-    lateinit var moviesOfflineRepository: IMoviesOfflineRepository
+    private lateinit var moviesOfflineRepository: IMoviesOfflineRepository
 
     @Mock
-    lateinit var moviesOnlineRepository: IMoviesOnlineRepository
+    private lateinit var moviesOnlineRepository: IMoviesOnlineRepository
 
     private lateinit var moviesUseCase: IMoviesUseCase
 
@@ -62,7 +63,7 @@ class UseCaseSearchMoviesTest : KoinTest {
     @Test
     fun testSearchMovieByIdOffline() {
         Mockito
-            .`when`(moviesOfflineRepository.searchMovieById(TEST_MOVIE_IMDBID))
+            .`when`(moviesOfflineRepository.searchMovieById(ArgumentMatchers.anyString()))
             .thenAnswer { Single.just(testMovie) }
 
         moviesUseCase.searchMovieById(TEST_MOVIE_IMDBID)
@@ -74,10 +75,10 @@ class UseCaseSearchMoviesTest : KoinTest {
     @Test
     fun testSearchMovieByIdOnline() {
         Mockito
-            .`when`(moviesOfflineRepository.searchMovieById(TEST_MOVIE_IMDBID))
+            .`when`(moviesOfflineRepository.searchMovieById(ArgumentMatchers.anyString()))
             .thenAnswer { Single.error<Movie>(Exception()) }
         Mockito
-            .`when`(moviesOnlineRepository.searchMovieById(TEST_MOVIE_IMDBID))
+            .`when`(moviesOnlineRepository.searchMovieById(ArgumentMatchers.anyString()))
             .thenAnswer { Single.just(testMovie) }
 
         moviesUseCase.searchMovieById(TEST_MOVIE_IMDBID)
@@ -89,7 +90,7 @@ class UseCaseSearchMoviesTest : KoinTest {
     @Test
     fun testSearchMovieByTitleOffline() {
         Mockito
-            .`when`(moviesOfflineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR))
+            .`when`(moviesOfflineRepository.searchMovie(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt()))
             .thenAnswer { Single.just(testMovie) }
 
         moviesUseCase.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)
@@ -101,10 +102,10 @@ class UseCaseSearchMoviesTest : KoinTest {
     @Test
     fun testSearchMovieByTitleOnline() {
         Mockito
-            .`when`(moviesOfflineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR))
+            .`when`(moviesOfflineRepository.searchMovie(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt()))
             .thenAnswer { Single.error<Movie>(Exception()) }
         Mockito
-            .`when`(moviesOnlineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR))
+            .`when`(moviesOnlineRepository.searchMovie(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt()))
             .thenAnswer { Single.just(testMovie) }
 
         moviesUseCase.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)

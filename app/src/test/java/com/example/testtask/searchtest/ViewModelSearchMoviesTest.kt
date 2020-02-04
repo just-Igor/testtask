@@ -33,13 +33,13 @@ class ViewModelSearchMoviesTest : KoinTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    val context: Context = Mockito.mock(Context::class.java)
+    private val context: Context = Mockito.mock(Context::class.java)
 
     @Mock
-    lateinit var movieObserver: Observer<Movie>
+    private lateinit var movieObserver: Observer<Movie>
 
     @Mock
-    lateinit var loadingObserver: Observer<Boolean>
+    private lateinit var loadingObserver: Observer<Boolean>
 
     @Before
     fun before() {

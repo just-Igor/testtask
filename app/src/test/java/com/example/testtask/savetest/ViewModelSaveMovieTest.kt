@@ -31,18 +31,20 @@ class ViewModelSaveMovieTest : KoinTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    val context: Context = Mockito.mock(Context::class.java)
+    private val context: Context = Mockito.mock(Context::class.java)
 
     @Mock
-    lateinit var saveObserver: Observer<Boolean>
+    private lateinit var saveObserver: Observer<Boolean>
 
     @Mock
-    lateinit var loadingObserver: Observer<Boolean>
+    private lateinit var loadingObserver: Observer<Boolean>
 
     @Mock
-    lateinit var moviesUseCase: IMoviesUseCase
+    private lateinit var moviesUseCase: IMoviesUseCase
 
     private lateinit var viewModel: SearchMovieViewModel
+
+    private fun <T> any(): T = Mockito.any<T>()
 
     @Before
     fun before() {
@@ -62,7 +64,7 @@ class ViewModelSaveMovieTest : KoinTest {
     @Test
     fun testGetMoviesPreviews() {
         Mockito
-            .`when`(moviesUseCase.saveMovie(testMovie))
+            .`when`(moviesUseCase.saveMovie(any()))
             .thenAnswer { Completable.complete() }
 
         viewModel.onMovieSaved.observeForever(saveObserver)

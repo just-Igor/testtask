@@ -21,6 +21,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
@@ -33,10 +34,10 @@ class OfflineRepositorySearchMoviesTest : KoinTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    val context: Context = Mockito.mock(Context::class.java)
+    private val context: Context = Mockito.mock(Context::class.java)
 
     @Mock
-    lateinit var movieDao: MovieDao
+    private lateinit var movieDao: MovieDao
 
     private lateinit var offlineRepository: IMoviesOfflineRepository
 
@@ -58,7 +59,7 @@ class OfflineRepositorySearchMoviesTest : KoinTest {
     @Test
     fun searchMovieById() {
         Mockito
-            .`when`(movieDao.getMovieById(TEST_MOVIE_IMDBID))
+            .`when`(movieDao.getMovieById(ArgumentMatchers.anyString()))
             .thenAnswer { Single.just(MovieDBEntity(testMovie)) }
 
         offlineRepository.searchMovieById(TEST_MOVIE_IMDBID)
@@ -70,7 +71,7 @@ class OfflineRepositorySearchMoviesTest : KoinTest {
     @Test
     fun searchMovieByTitle() {
         Mockito
-            .`when`(movieDao.getMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR))
+            .`when`(movieDao.getMovie(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt()))
             .thenAnswer { Single.just(MovieDBEntity(testMovie)) }
 
         offlineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)

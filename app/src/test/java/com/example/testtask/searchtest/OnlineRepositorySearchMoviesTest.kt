@@ -23,6 +23,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.get
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
@@ -36,10 +37,10 @@ class OnlineRepositorySearchMoviesTest : KoinTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    val context: Context = mock(Context::class.java)
+    private val context: Context = mock(Context::class.java)
 
     @Mock
-    lateinit var moviesApiClient: MoviesApiClient
+    private lateinit var moviesApiClient: MoviesApiClient
 
     private lateinit var onlineRepository: IMoviesOnlineRepository
 
@@ -61,7 +62,7 @@ class OnlineRepositorySearchMoviesTest : KoinTest {
     @Test
     fun searchMovieById() {
         Mockito
-            .`when`(moviesApiClient.getMovieById(TEST_API_KEY, TEST_MOVIE_IMDBID))
+            .`when`(moviesApiClient.getMovieById(ArgumentMatchers.anyString(), ArgumentMatchers.anyString()))
             .thenAnswer { Single.just(MovieAPIEntity(testMovie)) }
 
         onlineRepository.searchMovieById(TEST_MOVIE_IMDBID)
@@ -73,7 +74,7 @@ class OnlineRepositorySearchMoviesTest : KoinTest {
     @Test
     fun searchMovieByTitle() {
         Mockito
-            .`when`(moviesApiClient.getMovie(TEST_API_KEY, TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR))
+            .`when`(moviesApiClient.getMovie(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.anyInt()))
             .thenAnswer { Single.just(MovieAPIEntity(testMovie)) }
 
         onlineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)

@@ -17,6 +17,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
@@ -29,12 +30,14 @@ class RepositorySaveMovieTest : KoinTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    val context: Context = Mockito.mock(Context::class.java)
+    private val context: Context = Mockito.mock(Context::class.java)
 
     @Mock
-    lateinit var movieDao: MovieDao
+    private lateinit var movieDao: MovieDao
 
     private lateinit var offlineRepository: IMoviesOfflineRepository
+
+    private fun <T> any(): T = Mockito.any<T>()
 
     @Before
     fun before() {
@@ -54,7 +57,7 @@ class RepositorySaveMovieTest : KoinTest {
     @Test
     fun testSaveMovie() {
         Mockito
-            .`when`(movieDao.saveMovie(MovieDBEntity(testMovie)))
+            .`when`(movieDao.saveMovie(any()))
             .thenAnswer { 1L }
 
         offlineRepository.saveMovie(testMovie)

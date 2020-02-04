@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.testtask.domain.Movie
 import com.example.testtask.interactor.movies.IMoviesUseCase
 import com.example.testtask.ui.base.BaseViewModel
+import com.example.testtask.utils.livedata.SingleLiveEvent
 import com.example.testtask.utils.rx.ISchedulerProvider
 
 class SearchMovieViewModel(
@@ -15,7 +16,7 @@ class SearchMovieViewModel(
     private val _movie: MutableLiveData<Movie> = MutableLiveData()
     val movie: LiveData<Movie> get() = _movie
 
-    private val _onMovieSaved: MutableLiveData<Boolean> = MutableLiveData()
+    private val _onMovieSaved: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val onMovieSaved: LiveData<Boolean> get() = _onMovieSaved
 
     fun searchMovie(title: String, year: Int?) = startLoading {
