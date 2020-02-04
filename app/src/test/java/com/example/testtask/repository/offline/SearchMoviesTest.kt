@@ -1,12 +1,17 @@
-package com.example.testtask.savetest
+package com.example.testtask.repository.offline
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.testtask.di.testModules
+import com.example.testtask.repository.database.MovieDBEntity
 import com.example.testtask.repository.database.MovieDao
 import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
 import com.example.testtask.repository.movies.offline.MoviesOfflineRepository
-import data.testMovie
+import com.example.testtask.data.TEST_MOVIE_IMDBID
+import com.example.testtask.data.TEST_MOVIE_SEARCH_TITLE
+import com.example.testtask.data.TEST_MOVIE_SEARCH_YEAR
+import com.example.testtask.data.testMovie
+import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -16,13 +21,14 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class RepositorySaveMovieTest : KoinTest {
+class OfflineRepositorySearchMoviesTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -34,8 +40,6 @@ class RepositorySaveMovieTest : KoinTest {
     private lateinit var movieDao: MovieDao
 
     private lateinit var offlineRepository: IMoviesOfflineRepository
-
-    private fun <T> any(): T = Mockito.any<T>()
 
     @Before
     fun before() {
@@ -53,14 +57,26 @@ class RepositorySaveMovieTest : KoinTest {
     }
 
     @Test
-    fun testSaveMovie() {
+    fun searchMovieById() {
         Mockito
-            .`when`(movieDao.saveMovie(any()))
-            .thenAnswer { 1L }
+            .`when`(movieDao.getMovieById(ArgumentMatchers.anyString()))
+            .thenAnswer { Single.just(MovieDBEntity(testMovie)) }
 
-        offlineRepository.saveMovie(testMovie)
+        offlineRepository.searchMovieById(TEST_MOVIE_IMDBID)
             .test()
             .assertNoErrors()
-            .assertComplete()
+            .assertValue(testMovie)
+    }
+
+    @Test
+    fun searchMovieByTitle() {
+        Mockito
+            .`when`(movieDao.getMovie(ArgumentMatchers.anyString(), ArgumentMatchers.anyInt()))
+            .thenAnswer { Single.just(MovieDBEntity(testMovie)) }
+
+        offlineRepository.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)
+            .test()
+            .assertNoErrors()
+            .assertValue(testMovie)
     }
 }

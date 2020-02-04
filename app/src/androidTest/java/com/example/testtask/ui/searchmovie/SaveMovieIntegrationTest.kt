@@ -1,4 +1,4 @@
-package com.example.testtask.searchtest
+package com.example.testtask.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -8,7 +8,6 @@ import com.example.testtask.constants.TEST_MOVIE_SEARCH_TITLE
 import com.example.testtask.constants.TEST_MOVIE_SEARCH_YEAR
 import com.example.testtask.domain.Movie
 import com.example.testtask.rule.RxSchedulersOverrideRule
-import com.example.testtask.ui.movie.MovieViewModel
 import com.example.testtask.ui.searchmovie.SearchMovieViewModel
 import org.junit.Assert
 import org.junit.Before
@@ -22,16 +21,29 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 @RunWith(AndroidJUnit4::class)
-class SearchMovieTest : KoinTest {
+class SaveMovieTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
     @get:Rule
-    val schedulers = RxSchedulersOverrideRule()
+    var testSchedulerRule = RxSchedulersOverrideRule()
 
     @Mock
-    lateinit var movieObserver: Observer<Movie>
+    lateinit var saveObserver: Observer<Boolean>
+
+    private val testMovie = Movie(
+        imdbId = TEST_MOVIE_IMDBID,
+        title = TEST_MOVIE_SEARCH_TITLE,
+        year = TEST_MOVIE_SEARCH_YEAR,
+        released = null,
+        runtime = null,
+        director = null,
+        actors = null,
+        awards = null,
+        poster = null,
+        imdbRating = null
+    )
 
     @Before
     fun before() {
@@ -39,24 +51,13 @@ class SearchMovieTest : KoinTest {
     }
 
     @Test
-    fun testSearchByTitleMovie() {
+    fun testSaveMovie() {
         val viewModel: SearchMovieViewModel by inject()
 
-        viewModel.movie.observeForever(movieObserver)
-        viewModel.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)
+        viewModel.onMovieSaved.observeForever(saveObserver)
+        viewModel.saveMovie(testMovie)
 
-        Assert.assertNotNull(viewModel.movie.value)
-        Mockito.verify(movieObserver).onChanged(viewModel.movie.value)
-    }
-
-    @Test
-    fun testSearchMovieById() {
-        val viewModel: MovieViewModel by inject()
-
-        viewModel.movie.observeForever(movieObserver)
-        viewModel.loadMovie(TEST_MOVIE_IMDBID)
-
-        Assert.assertNotNull(viewModel.movie.value)
-        Mockito.verify(movieObserver).onChanged(viewModel.movie.value)
+        Assert.assertNotNull(viewModel.onMovieSaved.value)
+        Mockito.verify(saveObserver).onChanged(viewModel.onMovieSaved.value)
     }
 }

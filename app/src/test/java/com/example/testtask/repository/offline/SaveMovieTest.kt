@@ -1,13 +1,12 @@
-package com.example.testtask.savetest
+package com.example.testtask.repository.offline
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.testtask.di.testModules
-import com.example.testtask.usecase.movies.IMoviesUseCase
-import com.example.testtask.usecase.movies.MoviesUseCase
+import com.example.testtask.repository.database.MovieDao
 import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
-import data.testMovie
-import io.reactivex.Completable
+import com.example.testtask.repository.movies.offline.MoviesOfflineRepository
+import com.example.testtask.data.testMovie
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -17,14 +16,13 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
-import org.koin.test.get
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class UseCaseSaveMovieTest : KoinTest {
+class RepositorySaveMovieTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -33,9 +31,9 @@ class UseCaseSaveMovieTest : KoinTest {
     private val context: Context = Mockito.mock(Context::class.java)
 
     @Mock
-    private lateinit var moviesOfflineRepository: IMoviesOfflineRepository
+    private lateinit var movieDao: MovieDao
 
-    private lateinit var moviesUseCase: IMoviesUseCase
+    private lateinit var offlineRepository: IMoviesOfflineRepository
 
     private fun <T> any(): T = Mockito.any<T>()
 
@@ -46,7 +44,7 @@ class UseCaseSaveMovieTest : KoinTest {
             androidContext(context)
             modules(testModules)
         }
-        moviesUseCase = MoviesUseCase(moviesOfflineRepository, get())
+        offlineRepository = MoviesOfflineRepository(movieDao)
     }
 
     @After
@@ -57,10 +55,10 @@ class UseCaseSaveMovieTest : KoinTest {
     @Test
     fun testSaveMovie() {
         Mockito
-            .`when`(moviesOfflineRepository.saveMovie(any()))
-            .thenAnswer { Completable.complete() }
+            .`when`(movieDao.saveMovie(any()))
+            .thenAnswer { 1L }
 
-        moviesUseCase.saveMovie(testMovie)
+        offlineRepository.saveMovie(testMovie)
             .test()
             .assertNoErrors()
             .assertComplete()

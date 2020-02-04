@@ -1,15 +1,12 @@
-package com.example.testtask.searchtest
+package com.example.testtask.ui.searchmovie
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.testtask.di.testModules
 import com.example.testtask.domain.Movie
-import com.example.testtask.ui.movie.MovieViewModel
-import com.example.testtask.ui.searchmovie.SearchMovieViewModel
-import data.TEST_MOVIE_IMDBID
-import data.TEST_MOVIE_SEARCH_TITLE
-import data.TEST_MOVIE_SEARCH_YEAR
+import com.example.testtask.data.TEST_MOVIE_SEARCH_TITLE
+import com.example.testtask.data.TEST_MOVIE_SEARCH_YEAR
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -53,21 +50,6 @@ class ViewModelSearchMoviesTest : KoinTest {
     @After
     fun after() {
         stopKoin()
-    }
-
-    @Test
-    fun testSearchMovieById() {
-        val viewModel: MovieViewModel by inject()
-
-        viewModel.movie.observeForever(movieObserver)
-        viewModel.loadingProgress.observeForever(loadingObserver)
-        viewModel.loadMovie(TEST_MOVIE_IMDBID)
-
-        Assert.assertNotNull(viewModel.movie.value)
-        Mockito.verify(movieObserver).onChanged(viewModel.movie.value)
-
-        Assert.assertNotNull(viewModel.loadingProgress.value)
-        Mockito.verify(loadingObserver).onChanged(viewModel.loadingProgress.value)
     }
 
     @Test

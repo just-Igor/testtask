@@ -1,4 +1,4 @@
-package com.example.testtask.searchtest
+package com.example.testtask.repository.online
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -7,10 +7,10 @@ import com.example.testtask.repository.api.MovieAPIEntity
 import com.example.testtask.repository.api.MoviesApiClient
 import com.example.testtask.repository.movies.online.IMoviesOnlineRepository
 import com.example.testtask.repository.movies.online.MoviesOnlineRepository
-import data.TEST_MOVIE_IMDBID
-import data.TEST_MOVIE_SEARCH_TITLE
-import data.TEST_MOVIE_SEARCH_YEAR
-import data.testMovie
+import com.example.testtask.data.TEST_MOVIE_IMDBID
+import com.example.testtask.data.TEST_MOVIE_SEARCH_TITLE
+import com.example.testtask.data.TEST_MOVIE_SEARCH_YEAR
+import com.example.testtask.data.testMovie
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before

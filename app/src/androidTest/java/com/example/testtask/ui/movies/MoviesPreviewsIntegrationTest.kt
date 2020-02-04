@@ -1,4 +1,4 @@
-package com.example.testtask.previewstest
+package com.example.testtask.ui.movies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -33,15 +33,6 @@ class MoviesPreviewsTest : KoinTest {
     @Before
     fun before() {
         MockitoAnnotations.initMocks(this)
-    }
-
-    @Test
-    fun testGetMoviesPreviewsOffline() {
-        val moviesOfflineRepository: IMoviesOfflineRepository by inject()
-
-        moviesOfflineRepository.getLocalMoviesPreviews()
-            .test()
-            .assertNoErrors()
     }
 
     @Test

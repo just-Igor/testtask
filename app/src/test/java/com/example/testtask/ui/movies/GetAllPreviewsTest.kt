@@ -1,13 +1,14 @@
-package com.example.testtask.savetest
+package com.example.testtask.ui.movies
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.testtask.di.testModules
+import com.example.testtask.domain.MoviePreview
 import com.example.testtask.usecase.movies.IMoviesUseCase
-import com.example.testtask.ui.searchmovie.SearchMovieViewModel
-import data.testMovie
-import io.reactivex.Completable
+import com.example.testtask.data.testMovie
+import io.reactivex.Flowable
+import io.reactivex.Observable
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -25,7 +26,7 @@ import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class ViewModelSaveMovieTest : KoinTest {
+class ViewModelPreviewsTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -34,7 +35,7 @@ class ViewModelSaveMovieTest : KoinTest {
     private val context: Context = Mockito.mock(Context::class.java)
 
     @Mock
-    private lateinit var saveObserver: Observer<Boolean>
+    private lateinit var moviesObserver: Observer<List<MoviePreview>>
 
     @Mock
     private lateinit var loadingObserver: Observer<Boolean>
@@ -42,9 +43,7 @@ class ViewModelSaveMovieTest : KoinTest {
     @Mock
     private lateinit var moviesUseCase: IMoviesUseCase
 
-    private lateinit var viewModel: SearchMovieViewModel
-
-    private fun <T> any(): T = Mockito.any<T>()
+    private lateinit var viewModel: MoviesViewModel
 
     @Before
     fun before() {
@@ -53,7 +52,7 @@ class ViewModelSaveMovieTest : KoinTest {
             androidContext(context)
             modules(testModules)
         }
-        viewModel = SearchMovieViewModel(moviesUseCase, get())
+        viewModel = MoviesViewModel(moviesUseCase, get())
     }
 
     @After
@@ -64,15 +63,15 @@ class ViewModelSaveMovieTest : KoinTest {
     @Test
     fun testGetMoviesPreviews() {
         Mockito
-            .`when`(moviesUseCase.saveMovie(any()))
-            .thenAnswer { Completable.complete() }
+            .`when`(moviesUseCase.getLocalMoviesPreviews())
+            .thenAnswer { Observable.just(listOf(testMovie)) }
 
-        viewModel.onMovieSaved.observeForever(saveObserver)
+        viewModel.movies.observeForever(moviesObserver)
         viewModel.loadingProgress.observeForever(loadingObserver)
-        viewModel.saveMovie(testMovie)
+        viewModel.loadData()
 
-        Assert.assertNotNull(viewModel.onMovieSaved.value)
-        Mockito.verify(saveObserver).onChanged(viewModel.onMovieSaved.value)
+        Assert.assertNotNull(viewModel.movies.value)
+        Mockito.verify(moviesObserver).onChanged(viewModel.movies.value)
 
         Assert.assertNotNull(viewModel.loadingProgress.value)
         Mockito.verify(loadingObserver).onChanged(viewModel.loadingProgress.value)
