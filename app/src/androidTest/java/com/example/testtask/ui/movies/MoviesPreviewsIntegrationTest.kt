@@ -23,7 +23,7 @@ class MoviesPreviewsIntegrationTest : KoinTest {
     val rule = InstantTaskExecutorRule()
 
     @get:Rule
-    var testSchedulerRule = RxSchedulersOverrideRule()
+    val testSchedulerRule = RxSchedulersOverrideRule()
 
     @Mock
     lateinit var moviesObserver: Observer<List<MoviePreview>>

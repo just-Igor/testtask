@@ -26,7 +26,7 @@ class SaveMovieIntegrationTest : KoinTest {
     val rule = InstantTaskExecutorRule()
 
     @get:Rule
-    var testSchedulerRule = RxSchedulersOverrideRule()
+    val testSchedulerRule = RxSchedulersOverrideRule()
 
     @Mock
     lateinit var saveObserver: Observer<Boolean>
