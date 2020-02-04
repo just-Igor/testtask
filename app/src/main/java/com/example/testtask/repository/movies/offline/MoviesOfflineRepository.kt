@@ -11,11 +11,7 @@ import io.reactivex.Single
 class MoviesOfflineRepository(private val movieDao: MovieDao) : IMoviesOfflineRepository {
 
     override fun saveMovie(movie: Movie): Completable {
-        return Completable.fromCallable { movieDao.saveMovie(
-            MovieDBEntity(
-                movie
-            )
-        ) }
+        return Completable.fromCallable { movieDao.saveMovie(MovieDBEntity(movie)) }
     }
 
     override fun getLocalMoviesPreviews(): Observable<List<MoviePreview>> {
