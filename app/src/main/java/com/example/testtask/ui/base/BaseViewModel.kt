@@ -16,7 +16,7 @@ abstract class BaseViewModel : ViewModel() {
 
     private val disposables = CompositeDisposable()
 
-    fun Disposable.addToDisposables() {
+    protected fun Disposable.addToDisposables() {
         disposables.add(this)
     }
 
