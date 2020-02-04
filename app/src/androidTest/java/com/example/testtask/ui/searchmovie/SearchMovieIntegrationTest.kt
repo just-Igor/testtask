@@ -19,7 +19,7 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 @RunWith(AndroidJUnit4::class)
-class SearchMovieTest : KoinTest {
+class SearchMovieIntegrationTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()

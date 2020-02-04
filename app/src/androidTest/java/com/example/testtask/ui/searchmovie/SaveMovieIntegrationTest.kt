@@ -1,4 +1,4 @@
-package com.example.testtask.ui
+package com.example.testtask.ui.searchmovie
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -8,7 +8,6 @@ import com.example.testtask.constants.TEST_MOVIE_SEARCH_TITLE
 import com.example.testtask.constants.TEST_MOVIE_SEARCH_YEAR
 import com.example.testtask.domain.Movie
 import com.example.testtask.rule.RxSchedulersOverrideRule
-import com.example.testtask.ui.searchmovie.SearchMovieViewModel
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -21,7 +20,7 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 @RunWith(AndroidJUnit4::class)
-class SaveMovieTest : KoinTest {
+class SaveMovieIntegrationTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()

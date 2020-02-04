@@ -26,7 +26,7 @@ import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class ViewModelPreviewsTest : KoinTest {
+class GetAllPreviewsTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()

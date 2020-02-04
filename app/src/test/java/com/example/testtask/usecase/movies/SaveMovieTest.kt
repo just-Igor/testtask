@@ -22,7 +22,7 @@ import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class UseCaseSaveMovieTest : KoinTest {
+class SaveMovieTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()

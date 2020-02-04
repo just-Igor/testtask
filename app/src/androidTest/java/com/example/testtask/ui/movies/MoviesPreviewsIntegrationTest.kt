@@ -4,9 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.testtask.domain.MoviePreview
-import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
 import com.example.testtask.rule.RxSchedulersOverrideRule
-import com.example.testtask.ui.movies.MoviesViewModel
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -19,7 +17,7 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 @RunWith(AndroidJUnit4::class)
-class MoviesPreviewsTest : KoinTest {
+class MoviesPreviewsIntegrationTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()

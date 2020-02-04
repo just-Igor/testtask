@@ -1,4 +1,4 @@
-package data
+package com.example.testtask.data
 
 import com.example.testtask.domain.Movie
 

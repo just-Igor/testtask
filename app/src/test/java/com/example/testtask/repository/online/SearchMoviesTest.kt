@@ -30,7 +30,7 @@ import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class OnlineRepositorySearchMoviesTest : KoinTest {
+class SearchMoviesTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
