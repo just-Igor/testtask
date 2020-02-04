@@ -7,7 +7,6 @@ import com.example.testtask.entity.MovieAPIEntity
 import com.example.testtask.repository.api.MoviesApiClient
 import com.example.testtask.repository.movies.online.IMoviesOnlineRepository
 import com.example.testtask.repository.movies.online.MoviesOnlineRepository
-import data.TEST_API_KEY
 import data.TEST_MOVIE_IMDBID
 import data.TEST_MOVIE_SEARCH_TITLE
 import data.TEST_MOVIE_SEARCH_YEAR

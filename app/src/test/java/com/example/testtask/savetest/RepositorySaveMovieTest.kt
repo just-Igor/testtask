@@ -3,7 +3,6 @@ package com.example.testtask.savetest
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.testtask.di.testModules
-import com.example.testtask.entity.MovieDBEntity
 import com.example.testtask.repository.database.MovieDao
 import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
 import com.example.testtask.repository.movies.offline.MoviesOfflineRepository
@@ -17,7 +16,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
-import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations

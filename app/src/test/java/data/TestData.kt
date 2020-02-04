@@ -2,7 +2,6 @@ package data
 
 import com.example.testtask.domain.Movie
 
-const val TEST_API_KEY = ""
 const val TEST_MOVIE_SEARCH_TITLE = "starwars"
 const val TEST_MOVIE_SEARCH_YEAR = 2018
 const val TEST_MOVIE_IMDBID = "tt9336300"
