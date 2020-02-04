@@ -1,7 +1,7 @@
 package com.example.testtask.domain
 
-import com.example.testtask.entity.MovieAPIEntity
-import com.example.testtask.entity.MovieDBEntity
+import com.example.testtask.repository.api.MovieAPIEntity
+import com.example.testtask.repository.database.MovieDBEntity
 
 data class Movie(
     val imdbId: String,

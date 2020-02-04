@@ -1,6 +1,5 @@
 package com.example.testtask.repository.api
 
-import com.example.testtask.entity.MovieAPIEntity
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

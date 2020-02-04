@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.testtask.domain.MoviePreview
-import com.example.testtask.entity.MovieDBEntity
 import io.reactivex.Flowable
 import io.reactivex.Single
 

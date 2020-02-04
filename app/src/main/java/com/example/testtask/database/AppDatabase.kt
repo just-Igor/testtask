@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.testtask.constants.DB_NAME
-import com.example.testtask.entity.MovieDBEntity
+import com.example.testtask.repository.database.MovieDBEntity
 import com.example.testtask.repository.database.MovieDao
 
 @Database(

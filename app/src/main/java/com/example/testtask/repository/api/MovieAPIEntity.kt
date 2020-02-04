@@ -1,4 +1,4 @@
-package com.example.testtask.entity
+package com.example.testtask.repository.api
 
 import com.example.testtask.domain.Movie
 import com.google.gson.annotations.SerializedName

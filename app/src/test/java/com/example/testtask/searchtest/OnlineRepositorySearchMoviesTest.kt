@@ -3,7 +3,7 @@ package com.example.testtask.searchtest
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.testtask.di.testModules
-import com.example.testtask.entity.MovieAPIEntity
+import com.example.testtask.repository.api.MovieAPIEntity
 import com.example.testtask.repository.api.MoviesApiClient
 import com.example.testtask.repository.movies.online.IMoviesOnlineRepository
 import com.example.testtask.repository.movies.online.MoviesOnlineRepository

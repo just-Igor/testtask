@@ -1,4 +1,4 @@
-package com.example.testtask.entity
+package com.example.testtask.repository.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
