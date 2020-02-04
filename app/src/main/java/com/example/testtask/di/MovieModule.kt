@@ -1,7 +1,5 @@
 package com.example.testtask.di
 
-import com.example.testtask.usecase.movies.IMoviesUseCase
-import com.example.testtask.usecase.movies.MoviesUseCase
 import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
 import com.example.testtask.repository.movies.offline.MoviesOfflineRepository
 import com.example.testtask.repository.movies.online.IMoviesOnlineRepository
@@ -9,6 +7,8 @@ import com.example.testtask.repository.movies.online.MoviesOnlineRepository
 import com.example.testtask.ui.movie.MovieViewModel
 import com.example.testtask.ui.movies.MoviesViewModel
 import com.example.testtask.ui.searchmovie.SearchMovieViewModel
+import com.example.testtask.usecase.movies.IMoviesUseCase
+import com.example.testtask.usecase.movies.MoviesUseCase
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

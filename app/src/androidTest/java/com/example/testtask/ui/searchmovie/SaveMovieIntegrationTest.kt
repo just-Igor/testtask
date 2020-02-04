@@ -8,7 +8,7 @@ import com.example.testtask.constants.TEST_MOVIE_SEARCH_TITLE
 import com.example.testtask.constants.TEST_MOVIE_SEARCH_YEAR
 import com.example.testtask.domain.Movie
 import com.example.testtask.rule.RxSchedulersOverrideRule
-import org.junit.Assert
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -16,7 +16,7 @@ import org.junit.runner.RunWith
 import org.koin.core.inject
 import org.koin.test.KoinTest
 import org.mockito.Mock
-import org.mockito.Mockito
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 @RunWith(AndroidJUnit4::class)
@@ -56,7 +56,7 @@ class SaveMovieIntegrationTest : KoinTest {
         viewModel.onMovieSaved.observeForever(saveObserver)
         viewModel.saveMovie(testMovie)
 
-        Assert.assertNotNull(viewModel.onMovieSaved.value)
-        Mockito.verify(saveObserver).onChanged(viewModel.onMovieSaved.value)
+        assertNotNull(viewModel.onMovieSaved.value)
+        verify(saveObserver).onChanged(viewModel.onMovieSaved.value)
     }
 }

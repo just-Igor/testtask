@@ -3,56 +3,42 @@ package com.example.testtask.ui.movies
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.example.testtask.data.testMoviePreview
 import com.example.testtask.di.testModules
 import com.example.testtask.domain.MoviePreview
 import com.example.testtask.usecase.movies.IMoviesUseCase
-import com.example.testtask.data.testMovie
-import io.reactivex.Flowable
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import io.reactivex.Observable
 import org.junit.After
-import org.junit.Assert
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.get
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
-import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner::class)
 class GetAllPreviewsTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    @Mock
-    private val context: Context = Mockito.mock(Context::class.java)
+    private val context: Context = mock()
 
-    @Mock
-    private lateinit var moviesObserver: Observer<List<MoviePreview>>
+    private val moviesObserver: Observer<List<MoviePreview>> = mock()
 
-    @Mock
-    private lateinit var loadingObserver: Observer<Boolean>
-
-    @Mock
-    private lateinit var moviesUseCase: IMoviesUseCase
-
-    private lateinit var viewModel: MoviesViewModel
+    private val loadingObserver: Observer<Boolean> = mock()
 
     @Before
     fun before() {
-        MockitoAnnotations.initMocks(this)
         startKoin {
             androidContext(context)
             modules(testModules)
         }
-        viewModel = MoviesViewModel(moviesUseCase, get())
     }
 
     @After
@@ -62,18 +48,19 @@ class GetAllPreviewsTest : KoinTest {
 
     @Test
     fun testGetMoviesPreviews() {
-        Mockito
-            .`when`(moviesUseCase.getLocalMoviesPreviews())
-            .thenAnswer { Observable.just(listOf(testMovie)) }
+        val moviesUseCase = mock<IMoviesUseCase> {
+            on { getLocalMoviesPreviews() } doReturn Observable.just(listOf(testMoviePreview))
+        }
+        val viewModel = MoviesViewModel(moviesUseCase, get())
 
         viewModel.movies.observeForever(moviesObserver)
         viewModel.loadingProgress.observeForever(loadingObserver)
         viewModel.loadData()
 
-        Assert.assertNotNull(viewModel.movies.value)
-        Mockito.verify(moviesObserver).onChanged(viewModel.movies.value)
+        assertNotNull(viewModel.movies.value)
+        verify(moviesObserver).onChanged(viewModel.movies.value)
 
-        Assert.assertNotNull(viewModel.loadingProgress.value)
-        Mockito.verify(loadingObserver).onChanged(viewModel.loadingProgress.value)
+        assertNotNull(viewModel.loadingProgress.value)
+        verify(loadingObserver).onChanged(viewModel.loadingProgress.value)
     }
 }

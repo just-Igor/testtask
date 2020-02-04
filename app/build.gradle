@@ -78,16 +78,14 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     def core_testing_version = "2.1.0"
-    def mockito_version = "3.2.4"
     testImplementation "junit:junit:4.12"
     testImplementation "androidx.arch.core:core-testing:$core_testing_version"
-    testImplementation "org.mockito:mockito-core:$mockito_version"
     testImplementation "org.koin:koin-test:$koin_version"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
     androidTestImplementation "androidx.test.ext:junit:1.1.1"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
     androidTestImplementation "androidx.arch.core:core-testing:$core_testing_version"
-    androidTestImplementation "org.mockito:mockito-android:$mockito_version"
+    androidTestImplementation "org.mockito:mockito-android:3.2.4"
     androidTestImplementation ("org.koin:koin-test:$koin_version") { exclude group: 'org.mockito' }
 }

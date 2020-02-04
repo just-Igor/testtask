@@ -2,49 +2,36 @@ package com.example.testtask.usecase.movies
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.testtask.data.testMovie
 import com.example.testtask.di.testModules
 import com.example.testtask.repository.movies.offline.IMoviesOfflineRepository
-import com.example.testtask.data.testMovie
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
 import io.reactivex.Completable
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.get
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
-import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner::class)
 class SaveMovieTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    @Mock
-    private val context: Context = Mockito.mock(Context::class.java)
-
-    @Mock
-    private lateinit var moviesOfflineRepository: IMoviesOfflineRepository
-
-    private lateinit var moviesUseCase: IMoviesUseCase
-
-    private fun <T> any(): T = Mockito.any<T>()
+    private val context: Context = mock()
 
     @Before
     fun before() {
-        MockitoAnnotations.initMocks(this)
         startKoin {
             androidContext(context)
             modules(testModules)
         }
-        moviesUseCase = MoviesUseCase(moviesOfflineRepository, get())
     }
 
     @After
@@ -54,10 +41,10 @@ class SaveMovieTest : KoinTest {
 
     @Test
     fun testSaveMovie() {
-        Mockito
-            .`when`(moviesOfflineRepository.saveMovie(any()))
-            .thenAnswer { Completable.complete() }
-
+        val moviesOfflineRepository = mock<IMoviesOfflineRepository> {
+            on { saveMovie(any()) } doReturn Completable.complete()
+        }
+        val moviesUseCase = MoviesUseCase(moviesOfflineRepository, get())
         moviesUseCase.saveMovie(testMovie)
             .test()
             .assertNoErrors()

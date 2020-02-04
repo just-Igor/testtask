@@ -3,39 +3,35 @@ package com.example.testtask.ui.movie
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.example.testtask.data.TEST_MOVIE_IMDBID
 import com.example.testtask.di.testModules
 import com.example.testtask.domain.Movie
-import com.example.testtask.data.TEST_MOVIE_IMDBID
-import org.junit.*
-import org.junit.runner.RunWith
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
+import org.junit.After
+import org.junit.Assert.assertNotNull
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.inject
 import org.koin.test.KoinTest
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
-import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner::class)
 class SearchMovieByIdTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    @Mock
-    private val context: Context = Mockito.mock(Context::class.java)
+    private val context: Context = mock()
 
-    @Mock
-    private lateinit var movieObserver: Observer<Movie>
+    private val movieObserver: Observer<Movie> = mock()
 
-    @Mock
-    private lateinit var loadingObserver: Observer<Boolean>
+    private val loadingObserver: Observer<Boolean> = mock()
 
     @Before
     fun before() {
-        MockitoAnnotations.initMocks(this)
         startKoin {
             androidContext(context)
             modules(testModules)
@@ -55,10 +51,10 @@ class SearchMovieByIdTest : KoinTest {
         viewModel.loadingProgress.observeForever(loadingObserver)
         viewModel.loadMovie(TEST_MOVIE_IMDBID)
 
-        Assert.assertNotNull(viewModel.movie.value)
-        Mockito.verify(movieObserver).onChanged(viewModel.movie.value)
+        assertNotNull(viewModel.movie.value)
+        verify(movieObserver).onChanged(viewModel.movie.value)
 
-        Assert.assertNotNull(viewModel.loadingProgress.value)
-        Mockito.verify(loadingObserver).onChanged(viewModel.loadingProgress.value)
+        assertNotNull(viewModel.loadingProgress.value)
+        verify(loadingObserver).onChanged(viewModel.loadingProgress.value)
     }
 }

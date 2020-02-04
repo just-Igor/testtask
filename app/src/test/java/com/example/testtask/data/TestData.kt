@@ -1,6 +1,7 @@
 package com.example.testtask.data
 
 import com.example.testtask.domain.Movie
+import com.example.testtask.domain.MoviePreview
 
 const val TEST_MOVIE_SEARCH_TITLE = "starwars"
 const val TEST_MOVIE_SEARCH_YEAR = 2018
@@ -17,4 +18,11 @@ val testMovie = Movie(
     awards = null,
     poster = null,
     imdbRating = null
+)
+
+val testMoviePreview = MoviePreview(
+    TEST_MOVIE_IMDBID,
+    TEST_MOVIE_SEARCH_TITLE,
+    null,
+    null
 )
