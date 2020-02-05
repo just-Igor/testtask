@@ -6,6 +6,7 @@ import com.example.testtask.domain.MoviePreview
 const val TEST_MOVIE_SEARCH_TITLE = "starwars"
 const val TEST_MOVIE_SEARCH_YEAR = 2018
 const val TEST_MOVIE_IMDBID = "tt9336300"
+const val TEST_EXCEPTION_MESSAGE = "test exception"
 
 val testMovie = Movie(
     imdbId = TEST_MOVIE_IMDBID,

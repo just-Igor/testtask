@@ -3,6 +3,7 @@ package com.example.testtask.ui.movies
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.example.testtask.data.TEST_EXCEPTION_MESSAGE
 import com.example.testtask.data.testMoviePreview
 import com.example.testtask.di.testModules
 import com.example.testtask.domain.MoviePreview
@@ -29,10 +30,6 @@ class GetAllPreviewsTest : KoinTest {
 
     private val context: Context = mock()
 
-    private val moviesObserver: Observer<List<MoviePreview>> = mock()
-
-    private val loadingObserver: Observer<Boolean> = mock()
-
     @Before
     fun before() {
         startKoin {
@@ -52,6 +49,8 @@ class GetAllPreviewsTest : KoinTest {
             on { getLocalMoviesPreviews() } doReturn Observable.just(listOf(testMoviePreview))
         }
         val viewModel = MoviesViewModel(moviesUseCase, get())
+        val moviesObserver: Observer<List<MoviePreview>> = mock()
+        val loadingObserver: Observer<Boolean> = mock()
 
         viewModel.movies.observeForever(moviesObserver)
         viewModel.loadingProgress.observeForever(loadingObserver)
@@ -62,5 +61,20 @@ class GetAllPreviewsTest : KoinTest {
 
         assertNotNull(viewModel.loadingProgress.value)
         verify(loadingObserver).onChanged(viewModel.loadingProgress.value)
+    }
+
+    @Test
+    fun testGetMoviesPreviewsWithError() {
+        val moviesUseCase = mock<IMoviesUseCase> {
+            on { getLocalMoviesPreviews() } doReturn Observable.error(Exception(TEST_EXCEPTION_MESSAGE))
+        }
+        val viewModel = MoviesViewModel(moviesUseCase, get())
+        val errorObserver: Observer<String> = mock()
+
+        viewModel.errorMessage.observeForever(errorObserver)
+        viewModel.loadData()
+
+        assertNotNull(viewModel.errorMessage.value)
+        verify(errorObserver).onChanged(viewModel.errorMessage.value)
     }
 }
