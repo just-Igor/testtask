@@ -25,6 +25,10 @@ class SearchMovieFragment : BaseFragment() {
 
     private val viewModel: SearchMovieViewModel by viewModel()
 
+    override fun hideError() {
+        viewModel.hideError()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,8 +51,8 @@ class SearchMovieFragment : BaseFragment() {
             btnSearchMovie.isEnabled = !isLoadingRun
         })
 
-        viewModel.errorMessage.observe(this, Observer { errorMessage ->
-            showError(errorMessage)
+        viewModel.error.observe(this, Observer { error ->
+            showError(error)
         })
 
         viewModel.movie.observe(this, Observer { movie ->
@@ -59,7 +63,7 @@ class SearchMovieFragment : BaseFragment() {
             if (saved) {
                 showMessage(getString(R.string.movie_saved_message))
             } else {
-                showError(getString(R.string.unknown_error))
+                showMessage(getString(R.string.unknown_error))
             }
         })
     }

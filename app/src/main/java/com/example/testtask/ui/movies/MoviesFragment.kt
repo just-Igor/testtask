@@ -29,6 +29,10 @@ class MoviesFragment : BaseFragment() {
 
     private val moviesAdapter = FlexibleAdapter(listOf<MovieItem>())
 
+    override fun hideError() {
+        viewModel.hideError()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_movies, container, false)
     }
@@ -49,8 +53,8 @@ class MoviesFragment : BaseFragment() {
             pbLoading.isVisible = loadingProgress
         })
 
-        viewModel.errorMessage.observe(this, Observer { errorMessage ->
-            showError(errorMessage)
+        viewModel.error.observe(this, Observer { error ->
+            showError(error)
         })
 
         viewModel.movies.observe(this, Observer { movies ->

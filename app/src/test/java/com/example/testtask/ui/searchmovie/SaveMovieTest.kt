@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.example.testtask.data.TEST_EXCEPTION_MESSAGE
 import com.example.testtask.data.testMovie
 import com.example.testtask.di.testModules
+import com.example.testtask.domain.Error
 import com.example.testtask.usecase.movies.IMoviesUseCase
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
@@ -70,11 +71,11 @@ class SaveMovieTest : KoinTest {
             on { saveMovie(any()) } doReturn Completable.error(Exception(TEST_EXCEPTION_MESSAGE))
         }
         val viewModel = SearchMovieViewModel(moviesUseCase, get())
-        val errorObserver: Observer<String> = mock()
-        viewModel.errorMessage.observeForever(errorObserver)
+        val errorObserver: Observer<Error> = mock()
+        viewModel.error.observeForever(errorObserver)
         viewModel.saveMovie(testMovie)
 
-        assertNotNull(viewModel.errorMessage.value)
-        verify(errorObserver).onChanged(viewModel.errorMessage.value)
+        assertNotNull(viewModel.error.value)
+        verify(errorObserver).onChanged(viewModel.error.value)
     }
 }

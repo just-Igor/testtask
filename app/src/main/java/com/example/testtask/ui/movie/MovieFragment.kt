@@ -30,6 +30,10 @@ class MovieFragment : BaseFragment() {
 
     private val viewModel: MovieViewModel by viewModel()
 
+    override fun hideError() {
+        viewModel.hideError()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_movie, container, false)
     }
@@ -51,8 +55,8 @@ class MovieFragment : BaseFragment() {
             clMovieInfo.isVisible = !isLoadingRun
         })
 
-        viewModel.errorMessage.observe(this, Observer { errorMessage ->
-            showError(errorMessage)
+        viewModel.error.observe(this, Observer { error ->
+            showError(error)
         })
 
         viewModel.movie.observe(this, Observer { movie ->

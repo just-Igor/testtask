@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.example.testtask.data.TEST_EXCEPTION_MESSAGE
 import com.example.testtask.data.testMoviePreview
 import com.example.testtask.di.testModules
+import com.example.testtask.domain.Error
 import com.example.testtask.domain.MoviePreview
 import com.example.testtask.usecase.movies.IMoviesUseCase
 import com.nhaarman.mockitokotlin2.doReturn
@@ -69,12 +70,12 @@ class GetAllPreviewsTest : KoinTest {
             on { getLocalMoviesPreviews() } doReturn Observable.error(Exception(TEST_EXCEPTION_MESSAGE))
         }
         val viewModel = MoviesViewModel(moviesUseCase, get())
-        val errorObserver: Observer<String> = mock()
+        val errorObserver: Observer<Error> = mock()
 
-        viewModel.errorMessage.observeForever(errorObserver)
+        viewModel.error.observeForever(errorObserver)
         viewModel.loadData()
 
-        assertNotNull(viewModel.errorMessage.value)
-        verify(errorObserver).onChanged(viewModel.errorMessage.value)
+        assertNotNull(viewModel.error.value)
+        verify(errorObserver).onChanged(viewModel.error.value)
     }
 }

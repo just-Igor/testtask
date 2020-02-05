@@ -7,6 +7,7 @@ import com.example.testtask.data.TEST_EXCEPTION_MESSAGE
 import com.example.testtask.data.TEST_MOVIE_SEARCH_TITLE
 import com.example.testtask.data.TEST_MOVIE_SEARCH_YEAR
 import com.example.testtask.di.testModules
+import com.example.testtask.domain.Error
 import com.example.testtask.domain.Movie
 import com.example.testtask.usecase.movies.IMoviesUseCase
 import com.nhaarman.mockitokotlin2.any
@@ -70,12 +71,12 @@ class SearchMoviesTest : KoinTest {
             on { searchMovie(any(), any()) } doReturn Single.error(Exception(TEST_EXCEPTION_MESSAGE))
         }
         val viewModel = SearchMovieViewModel(moviesUseCase, get())
-        val errorObserver: Observer<String> = mock()
+        val errorObserver: Observer<Error> = mock()
 
-        viewModel.errorMessage.observeForever(errorObserver)
+        viewModel.error.observeForever(errorObserver)
         viewModel.searchMovie(TEST_MOVIE_SEARCH_TITLE, TEST_MOVIE_SEARCH_YEAR)
 
-        assertNotNull(viewModel.errorMessage.value)
-        verify(errorObserver).onChanged(viewModel.errorMessage.value)
+        assertNotNull(viewModel.error.value)
+        verify(errorObserver).onChanged(viewModel.error.value)
     }
 }
