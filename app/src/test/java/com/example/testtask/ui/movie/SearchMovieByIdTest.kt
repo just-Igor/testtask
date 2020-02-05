@@ -3,8 +3,8 @@ package com.example.testtask.ui.movie
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.example.testtask.data.TEST_MOVIE_IMDBID
 import com.example.testtask.data.TEST_EXCEPTION_MESSAGE
+import com.example.testtask.data.TEST_MOVIE_IMDBID
 import com.example.testtask.di.testModules
 import com.example.testtask.domain.Movie
 import com.example.testtask.usecase.movies.IMoviesUseCase

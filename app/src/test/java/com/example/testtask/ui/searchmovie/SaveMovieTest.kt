@@ -12,6 +12,7 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import io.reactivex.Completable
+import java.lang.Exception
 import org.junit.After
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -22,7 +23,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.get
-import java.lang.Exception
 
 class SaveMovieTest : KoinTest {
 
