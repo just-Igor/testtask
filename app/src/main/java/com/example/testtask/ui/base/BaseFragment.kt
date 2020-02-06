@@ -14,7 +14,8 @@ abstract class BaseFragment : Fragment() {
                 .setTitle(R.string.warning)
                 .setCancelable(false)
                 .setPositiveButton(R.string.ok, null)
-                .create().apply {
+                .create()
+                .apply {
                     setOnShowListener {
                         errorDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
                             onErrorMessageButtonClick()
