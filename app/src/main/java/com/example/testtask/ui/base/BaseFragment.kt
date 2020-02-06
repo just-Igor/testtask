@@ -9,7 +9,7 @@ import com.example.testtask.domain.Error
 abstract class BaseFragment : Fragment() {
 
     private val errorDialog: AlertDialog by lazy {
-        AlertDialog.Builder(context!!)
+        AlertDialog.Builder(requireContext())
             .setTitle(R.string.warning)
             .setCancelable(false)
             .setPositiveButton(R.string.ok, null)
