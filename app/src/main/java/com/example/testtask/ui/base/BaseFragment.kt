@@ -33,8 +33,10 @@ abstract class BaseFragment : Fragment() {
     }
 
     private fun showErrorMessage(errorMessage: String) {
-        errorDialog.setMessage(errorMessage)
-        errorDialog.show()
+        if (!errorDialog.isShowing) {
+            errorDialog.setMessage(errorMessage)
+            errorDialog.show()
+        }
     }
 
     private fun closeError() {
