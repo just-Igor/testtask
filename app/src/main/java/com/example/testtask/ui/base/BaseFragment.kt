@@ -35,10 +35,8 @@ abstract class BaseFragment : Fragment() {
     }
 
     private fun showErrorMessage(errorMessage: String) {
-        context?.let {
-            errorDialog?.setMessage(errorMessage)
-            errorDialog?.show()
-        }
+        errorDialog?.setMessage(errorMessage)
+        errorDialog?.show()
     }
 
     private fun closeError() {
