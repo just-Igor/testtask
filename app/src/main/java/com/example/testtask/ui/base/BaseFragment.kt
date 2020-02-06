@@ -18,7 +18,7 @@ abstract class BaseFragment : Fragment() {
             .apply {
                 setOnShowListener {
                     // update onClickListener with our logic
-                    errorDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
+                    getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
                         onErrorMessageButtonClick()
                     }
                 }
