@@ -8,7 +8,21 @@ import com.example.testtask.domain.Error
 
 abstract class BaseFragment : Fragment() {
 
-    private lateinit var errorDialog: AlertDialog
+    private val errorDialog: AlertDialog? by lazy {
+        context?.let {
+            AlertDialog.Builder(it)
+                .setTitle(R.string.warning)
+                .setCancelable(false)
+                .setPositiveButton(R.string.ok, null)
+                .create().apply {
+                    setOnShowListener {
+                        errorDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
+                            onErrorMessageButtonClick()
+                        }
+                    }
+                }
+        }
+    }
 
     protected abstract fun onErrorMessageButtonClick()
 
@@ -21,25 +35,14 @@ abstract class BaseFragment : Fragment() {
 
     private fun showErrorMessage(errorMessage: String) {
         context?.let {
-            errorDialog = AlertDialog.Builder(it)
-                .setTitle(R.string.warning)
-                .setMessage(errorMessage)
-                .setCancelable(false)
-                .setPositiveButton(R.string.ok, null)
-                .create().apply {
-                    setOnShowListener {
-                        errorDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                            onErrorMessageButtonClick()
-                        }
-                    }
-                    show()
-                }
+            errorDialog?.setMessage(errorMessage)
+            errorDialog?.show()
         }
     }
 
     private fun closeError() {
-        if (::errorDialog.isInitialized && errorDialog.isShowing) {
-            errorDialog.dismiss()
+        if (errorDialog?.isShowing == true) {
+            errorDialog?.dismiss()
         }
     }
 
