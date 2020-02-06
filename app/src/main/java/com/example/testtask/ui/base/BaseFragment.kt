@@ -38,7 +38,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     private fun closeError() {
-        if (errorDialog.isShowing == true) {
+        if (errorDialog.isShowing) {
             errorDialog.dismiss()
         }
     }
