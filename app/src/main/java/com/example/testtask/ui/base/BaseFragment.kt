@@ -12,10 +12,12 @@ abstract class BaseFragment : Fragment() {
         AlertDialog.Builder(requireContext())
             .setTitle(R.string.warning)
             .setCancelable(false)
+            // add button without listener for not to close dialog when user click on button
             .setPositiveButton(R.string.ok, null)
             .create()
             .apply {
                 setOnShowListener {
+                    // update onClickListener with our logic
                     errorDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
                         onErrorMessageButtonClick()
                     }
