@@ -30,7 +30,7 @@ abstract class BaseViewModel : ViewModel() {
         _error.postValue(Error.ErrorMessage(errorMessage))
     }
 
-    fun hideError() {
+    fun closeError() {
         _error.postValue(Error.ClosedError)
     }
 

@@ -29,8 +29,8 @@ class MoviesFragment : BaseFragment() {
 
     private val moviesAdapter = FlexibleAdapter(listOf<MovieItem>())
 
-    override fun hideError() {
-        viewModel.hideError()
+    override fun onErrorMessageButtonClick() {
+        viewModel.closeError()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -54,7 +54,7 @@ class MoviesFragment : BaseFragment() {
         })
 
         viewModel.error.observe(this, Observer { error ->
-            showError(error)
+            handleError(error)
         })
 
         viewModel.movies.observe(this, Observer { movies ->

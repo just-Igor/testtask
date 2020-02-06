@@ -25,8 +25,8 @@ class SearchMovieFragment : BaseFragment() {
 
     private val viewModel: SearchMovieViewModel by viewModel()
 
-    override fun hideError() {
-        viewModel.hideError()
+    override fun onErrorMessageButtonClick() {
+        viewModel.closeError()
     }
 
     override fun onCreateView(
@@ -52,7 +52,7 @@ class SearchMovieFragment : BaseFragment() {
         })
 
         viewModel.error.observe(this, Observer { error ->
-            showError(error)
+            handleError(error)
         })
 
         viewModel.movie.observe(this, Observer { movie ->

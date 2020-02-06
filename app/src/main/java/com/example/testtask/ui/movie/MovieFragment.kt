@@ -30,8 +30,8 @@ class MovieFragment : BaseFragment() {
 
     private val viewModel: MovieViewModel by viewModel()
 
-    override fun hideError() {
-        viewModel.hideError()
+    override fun onErrorMessageButtonClick() {
+        viewModel.closeError()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,7 +56,7 @@ class MovieFragment : BaseFragment() {
         })
 
         viewModel.error.observe(this, Observer { error ->
-            showError(error)
+            handleError(error)
         })
 
         viewModel.movie.observe(this, Observer { movie ->
