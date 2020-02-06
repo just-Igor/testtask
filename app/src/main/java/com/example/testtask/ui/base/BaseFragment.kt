@@ -19,12 +19,6 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    private fun closeError() {
-        if (::errorDialog.isInitialized && errorDialog.isShowing) {
-            errorDialog.dismiss()
-        }
-    }
-
     private fun showErrorMessage(errorMessage: String) {
         context?.let {
             errorDialog = AlertDialog.Builder(it)
@@ -41,6 +35,12 @@ abstract class BaseFragment : Fragment() {
                     }
                     show()
                 }
+        }
+    }
+
+    private fun closeError() {
+        if (::errorDialog.isInitialized && errorDialog.isShowing) {
+            errorDialog.dismiss()
         }
     }
 
