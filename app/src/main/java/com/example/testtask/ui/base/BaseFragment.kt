@@ -24,7 +24,6 @@ abstract class BaseFragment : Fragment() {
             errorDialog = AlertDialog.Builder(it)
                 .setTitle(R.string.warning)
                 .setMessage(errorMessage)
-                .setMessage(errorMessage)
                 .setCancelable(false)
                 .setPositiveButton(R.string.ok, null)
                 .create().apply {
